@@ -4,7 +4,6 @@ import { ProductCard } from "./ProductCard";
 export const Contents = ({ filterCategory, sortOrder, filters }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -14,7 +13,7 @@ export const Contents = ({ filterCategory, sortOrder, filters }) => {
         accessories: "accessories",
       };
 
-      const endpoint = `${BASE_URL}/api/products/${categoryMap[filterCategory] || ""}`;
+      const endpoint = `${import.meta.env.VITE_BACKEND_URL}/api/products/${categoryMap[filterCategory] || ""}`;
       try {
         setLoading(true);
         const res = await fetch(endpoint);
