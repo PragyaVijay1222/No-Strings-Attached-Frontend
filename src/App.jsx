@@ -15,6 +15,10 @@ import { Signup } from './components/signup/Signup';
 import { Login } from './components/login/Login';
 import { Product } from './components/common/Product';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
+import { Checkout } from "./components/checkout/Checkout";
+import { CheckoutSummary } from "./components/checkout/CheckoutSummary";
+import { CheckoutPayment } from "./components/checkout/CheckoutPayment";
+import { CheckoutConfirmation } from './components/checkout/CheckoutConfirmation';
 
 function App() {
   return (
@@ -34,6 +38,10 @@ function App() {
       <Route path="/donate" element={<ProtectedRoute><Donate /></ProtectedRoute>} />
       <Route path="/blog" element={<ProtectedRoute><Blog /></ProtectedRoute>} />
       <Route path="/product/:id" element={<ProtectedRoute><Product /></ProtectedRoute>} />
+      {/* <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} /> */}
+      <Route path="/checkout/summary" element={<ProtectedRoute><CheckoutSummary /></ProtectedRoute>} />
+      <Route path="/checkout/payment" element={<ProtectedRoute><CheckoutPayment /></ProtectedRoute>} />
+      <Route path="/checkout/confirmation" element={<ProtectedRoute><CheckoutConfirmation /></ProtectedRoute>} />
     </Routes>
   );
 }

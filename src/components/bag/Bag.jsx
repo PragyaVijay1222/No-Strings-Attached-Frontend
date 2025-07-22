@@ -5,6 +5,7 @@ import { Footer } from "../common/Footer";
 import { ProductCard } from "../common/ProductCard";
 import { HeaderWomen } from "../women/HeaderWomen";
 import { Filter } from "../common/Filter";
+import { useNavigate } from "react-router-dom";
 
 export const Bag = () => {
   const [originalProducts, setOriginalProducts] = useState([]);
@@ -12,7 +13,7 @@ export const Bag = () => {
   const [sortOrder, setSortOrder] = useState("");
   const [filters, setFilters] = useState({});
   const userId = getUserId();
-
+  const navigate = useNavigate();
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
   const resetFilters = () => {
@@ -111,6 +112,16 @@ export const Bag = () => {
             )}
           </div>
 
+          {displayedProducts.length > 0 && (
+            <div className="text-center my-10">
+              <button
+              onClick={() => navigate("/checkout/summary")}
+              className="px-6 py-2 bg-[#736246] text-white rounded-lg hover:bg-[#5a4d37] transition"
+              >
+                Checkout
+              </button>
+            </div>
+          )}
           <div id="footer" className="mt-20">
             <Footer />
           </div>
