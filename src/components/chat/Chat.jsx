@@ -60,7 +60,7 @@ export const Chat = ({ productId, userId, sellerId }) => {
   };
 
   return (
-    <div className="border border-[#bfb6a6] p-4 rounded w-[49%] ml-[51%]">
+    <div className="border border-[#bfb6a6] p-4 rounded w-[49%] ml-[10%] h-[90%]">
       <h2 className="text-lg font-medium mb-2">Live Chat</h2>
       <div className="h-64 overflow-y-scroll mb-2 bg-gray-100 p-2 rounded">
         {messages.map((msg, index) => {

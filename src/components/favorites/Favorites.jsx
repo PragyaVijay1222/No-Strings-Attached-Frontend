@@ -3,7 +3,7 @@ import { getUserId } from "../../utils/auth";
 import { NavigationBar } from "../common/NavigationBar";
 import { Footer } from "../common/Footer";
 import { ProductCard } from "../common/ProductCard";
-import { HeaderWomen } from "../women/HeaderWomen";
+import { HeaderFavorite } from "./HeaderFavorite";
 import { Filter } from "../common/Filter";
 
 export const Favorites = () => {
@@ -92,7 +92,7 @@ export const Favorites = () => {
 
       <div id="body" className="flex flex-col ml-26 mr-1">
         <div id="header" className="mt-1">
-          <HeaderWomen />
+          <HeaderFavorite />
         </div>
 
         <div id="filter" className="mt-20 sticky top-0 z-[50] bg-white">

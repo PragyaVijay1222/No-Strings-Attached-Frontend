@@ -42,7 +42,7 @@ export const Footer = () => {
 
   return (
     <>
-      <div id="main" className="flex flex-row justify-between mt-12 w-400 ml-20 ">
+      <div id="main" className="flex flex-row justify-between mt-12 w-400 ml-20 border-t-1 border-[#736246] pt-20">
         <form id="feedbackForm" className="flex flex-col items-center text-center mt-4 " onSubmit={handleFormSubmit} ref={formRef}>
           <h3 className="mb-5 font-medium">Feedback</h3>
           <input type="text" name="name" placeholder="Name" className="border rounded-lg border-gray-700 focus:border-[#736246] w-full focus:ring-2 focus:ring-[#736246] outline-none h-10 w-70 mb-3" />

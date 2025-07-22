@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { NavigationBar } from '../common/NavigationBar';
-import { HeaderAccessories } from '../accessories/HeaderAccessories';
+import { HeaderProfile } from './HeaderProfile';
 import { Footer } from '../common/Footer';
 import './profile.css';
 
@@ -50,6 +50,10 @@ export const Profile = () => {
     navigate(`/product/${id}`);
   };
 
+  const profileBtn = () => {
+    navigate("/login");
+  }
+
   if (loading) return <div className="loading">Loading profile...</div>;
   if (error) return <div className="error">{error}</div>;
 
@@ -62,7 +66,7 @@ export const Profile = () => {
       <div id="navigation" className="fixed"><NavigationBar /></div>
 
       <div id="header" className="mt-1 w-full ml-27">
-        <HeaderAccessories />
+        <HeaderProfile />
       </div>
 
       <div id="body" className="mt-20 flex flex-col items-center px-10">
@@ -116,9 +120,16 @@ export const Profile = () => {
           </div>
         </div>
 
-        <div className="profile-header mt-10">
-          <h1 className="text-2xl font-medium">Name: {profile.name}</h1>
+        <div className="profile-header mt-10 mb-20 flex flex-row">
+          <h1 className="text-2xl font-medium mb-4 vertical-text">Name: {profile.name}</h1>
+          <div id="profilepic"><img src="https://i.pinimg.com/736x/25/06/c9/2506c909c706c6fcbaaf686aafc5032e.jpg" className="h-70 ml-10"/></div>
+          <div className="justify-items-start ml-10 mt-5">
           <p className="text-md text-gray-600">Email: {profile.email}</p>
+          <p className="text-md text-gray-600">Address: {profile.add}</p>
+          <p className="text-md text-gray-600">Mobile Number: {profile.number}</p>
+          <p className="text-md text-gray-600">Joined on: {new Date(profile.createdAt).toLocaleDateString('en-IN', {year: 'numeric',month: 'long',day: 'numeric',})}</p>
+          <button onClick={profileBtn} className="border rounded-lg border-gray-700 h-10 w-full hover:bg-[#736246] hover:border-[#736246] hover:text-white active:bg-[#4e3d2c] active:text-white active:border-[#4e3d2c] h-10 w-70 mb-3 mt-10">Logout</button>
+          </div>
         </div>
       </div>
 

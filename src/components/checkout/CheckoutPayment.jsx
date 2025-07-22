@@ -35,28 +35,35 @@ const placeOrder = async () => {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Scan & Pay</h1>
+    <>
+
+    <div id="companyName">
+      <h1 className="text-8xl text-[#736246] ml-4 mt-4 pb-3 herr-von-muellerhoff-regular">No Strings Attached</h1>
+    </div>
+
+    <div className="p-6 mt-[2%] ml-[35%]">
+      <h1 className="text-2xl text-[#736246] font-semibold mb-4">Scan & Pay</h1>
 
       {groupedData &&
         Object.entries(groupedData).map(([upi, group], index) => (
-          <div key={index} className="border p-4 mb-6 rounded shadow">
+          <div key={index} className="mb-6 border border-[#8f6865] rounded-lg p-8 w-[30%]">
             <h2 className="text-lg font-semibold">Seller: {group.sellerName}</h2>
             <p>UPI: {upi}</p>
             <p className="mb-2">Total Amount: ₹{group.total}</p>
             
             <QRCodeSVG
             value={`upi://pay?pa=${upi}&pn=${group.sellerName}&am=${group.total}&cu=INR`}
-            size={200}/>
+            size={200} className="ml-13 mt-7"/>
           </div>
         ))}
 
       <button
-        className="mt-4 bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded"
+        className="bg-[#8f6865] text-white hover:bg-[#736246] hover:border-[#736246] hover:text-white px-6 py-2 rounded"
         onClick={handlePaymentComplete}
       >
         I’ve Paid
       </button>
     </div>
+    </>
   );
 };

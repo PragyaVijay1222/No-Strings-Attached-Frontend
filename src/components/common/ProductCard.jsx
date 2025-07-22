@@ -136,7 +136,7 @@ export const ProductCard = ({ data, onRemove = null, onRemoveFav = null }) => {
       <div className="flex flex-col rounded-xl bg-[#cfcaba] h-[400px] w-70 shadow-md">
         {data.isSold && (
           <div className="absolute top-0 left-0 w-0 h-0 border-l-[60px] border-b-[60px] border-l-red-600 border-b-transparent z-10">
-            <span className="absolute top-1 left-[-8px] -rotate-45 text-white text-[10px] font-bold">
+            <span className="absolute top-3 left-[-49px] -rotate-45 text-white text-[10px] font-bold">
               SOLD
             </span>
           </div>

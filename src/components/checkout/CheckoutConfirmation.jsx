@@ -43,6 +43,8 @@ export const CheckoutConfirmation = () => {
         groups[sellerId].products.push({
           name: productData.name || "Unnamed Product",
           cost,
+          image: productData.image || "",
+          productId,
         });
       }
 
@@ -53,25 +55,32 @@ export const CheckoutConfirmation = () => {
   }, [order, navigate]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
+    <div className="flex flex-row">
       <NavigationBar />
-
+      <div>
+            <div id="companyName" className="ml-20">
+      <h1 className="text-8xl text-[#736246]  mt-4 pb-3 herr-von-muellerhoff-regular w-[80%]">No Strings Attached</h1>
+    </div>
       <div className="flex-grow flex flex-col items-center justify-center mt-10 text-center">
-        <h1 className="text-4xl font-bold text-green-600 mb-4">Order Confirmed!</h1>
-        <p className="text-lg mb-6">Thank you for your purchase. 🎉</p>
+        <h1 className="text-4xl font-bold text-[#736246] mb-4">Order Confirmed!</h1>
+        <p className="text-lg mb-6">Thank you for your purchase !</p>
 
         <div className="bg-gray-100 p-6 rounded-lg w-3/4">
           <h2 className="text-xl font-semibold mb-2">Order Summary</h2>
 
           {grouped.map((group, idx) => (
-            <div key={idx} className="border-t pt-2 mt-2 text-left">
+            <div key={idx} className="border-t border-[#736246] pt-8 mt-2 text-left">
               <p><strong>Seller:</strong> {group.sellerName}</p>
               <p><strong>Total:</strong> ₹{group.total}</p>
-              <ul className="ml-4 list-disc">
-                {group.products.map((p, index) => (
-                  <li key={index}>{p.name} - ₹{p.cost}</li>
-                ))}
-              </ul>
+          <ul className="list-disc ml-5 mt-10 flex flex-row justify-between">
+            {group.products.map((product) => (
+              <div key={idx} className="flex flex-col items-center gap-4 mb-2">
+              <img src={product.image} alt={product.name} className="w-60 h-70 object-cover rounded p-4" />
+              <span>{product.name} - ₹{product.cost}</span>
+              </div>
+            ))}
+          </ul>
             </div>
           ))}
 
@@ -80,13 +89,15 @@ export const CheckoutConfirmation = () => {
 
         <button
           onClick={() => navigate("/profile")}
-          className="mt-6 px-6 py-2 bg-[#736246] text-white rounded-lg hover:bg-[#5e5039]"
+          className="mt-6 px-6 py-2 bg-[#8f6865] text-white rounded-lg hover:bg-[#5e5039]"
         >
           Go to Profile
         </button>
       </div>
 
       <Footer />
+      </div>
     </div>
+    </>
   );
 };

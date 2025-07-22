@@ -1,7 +1,10 @@
 import { useRef } from "react";
+import { Info } from "lucide-react"
+import { useState } from "react";
 
 export const ContentSell = () => {
   const formRef = useRef();
+  const [showInfo, setShowInfo] = useState(false);
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
   async function handleFormSubmit(event) {
@@ -38,7 +41,12 @@ export const ContentSell = () => {
 
     return(
         <div id="sellContentMainDiv" className="flex flex-row">
-            <form action="" method="post" id="sellForm" className="flex flex-col w-full max-w-4xl mx-auto" onSubmit={(event) => handleFormSubmit(event)} ref={formRef}>
+
+        <button className="absolute right-5 top-5 z-10 hover:opacity-75 mt-[25%] mr-[24%]" type="button" onClick={() => setShowInfo((prev) => !prev)}title="Toggle input guide">
+        <Info size={20} color="#736246" />
+      </button>
+
+            <form action="" method="post" id="sellForm" className="flex flex-col w-full max-w-4xl mx-auto pr-10" onSubmit={(event) => handleFormSubmit(event)} ref={formRef}>
   <div className="flex items-center mb-3">
     <label htmlFor="name" className="w-[150px] mr-30 text-right font-medium">Name:</label>
     <input type="text" name="name" id="name" placeholder="Name of The Product" className="border rounded-lg border-gray-700 focus:border-[#736246] h-10 w-full focus:ring-2 focus:ring-[#736246] outline-none" />
@@ -99,19 +107,26 @@ export const ContentSell = () => {
   </button>
             </form>
 
-            <div id="info" className="mr-20 w-98">
-              <h2 className="font-medium">Information Regarding the Inputs in Form</h2>
-              <p>Name - Use the name of the item, not the functionality or any unique property. Prefered max length - 3 words. Ex: Denim Jacket.</p>
-              <p>Description - Write about the basic information and any unique selling point. Also add care guide or any required instruction. Ex: Casual indigo blue denim jacket with metal accessories. In great condition. Hand wash only, dry in shade. </p>
-              <p>Material - Material of the item including lining or attached metalware/accessories if present. Ex: Denim with cotton lining.</p>
-              <p>Condition - New (bought but never used) or Used or Mended (tried as a hobby/ differes from original stitichings/ added something new to it.) </p>
-              <p>Fit - Female Fit/ Male Fit (Note: By using these lables for the articles we did not mean it to to categories and differentiate. Buy/sell the items not the labels)</p>
-              <p>Type - Clothing / Accessories</p>
-              <p>Size - Use one from the size range given. If metrics in number, convert it before putting the value. In case of accessories again change from number to one of the given. Ex: In case of a tote bag: m or xl</p>
-              <p>Email - The same email used for signup.</p>
-              <p>Image - One is enough. In good lighting and pastel background.</p>
-              <p>UPI ID - For making your online transactions seamless. Not mendatory.</p>
-            </div>
+          {showInfo && (
+        <div
+          id="info"
+          className="ml-4 w-[420px] p-5 text-sm text-gray-700 sticky top-10"
+        >
+          <h2 className="font-medium mb-2 text-[#3b3635]">Input Guidelines</h2>
+          <ul className="list-disc pl-5 space-y-2 list-none">
+            <li><strong>Name:</strong> Prefer max 3 words (e.g. Denim Jacket)</li>
+            <li><strong>Description:</strong> Include care guide and highlights</li>
+            <li><strong>Material:</strong> Include lining or attached metalware</li>
+            <li><strong>Condition:</strong> New / Used / Mended</li>
+            <li><strong>Fit:</strong> Female Fit / Male Fit (labels for reference only)</li>
+            <li><strong>Type:</strong> Clothing / Accessories</li>
+            <li><strong>Size:</strong> Use predefined options like m / l / xl</li>
+            <li><strong>Email:</strong> Must match signup email</li>
+            <li><strong>Image:</strong> Good lighting + pastel background</li>
+            <li><strong>UPI ID:</strong> Optional; for payments</li>
+          </ul>
+        </div>
+      )}
         </div>
     )
 }

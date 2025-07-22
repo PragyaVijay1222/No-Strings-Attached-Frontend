@@ -51,7 +51,7 @@ export const Login = () => {
   return (
     <div>
       <div id="companyName">
-        <h1 className="text-8xl text-[#736246] pt-4 pb-3">No Strings Attached</h1>
+        <h1 className="text-8xl text-[#736246] pt-4 pb-3 herr-von-muellerhoff-regular">No Strings Attached</h1>
       </div>
       <form id="feedbackForm" className="flex flex-col items-center text-center mt-[9%]" onSubmit={handleFormSubmit} ref={formRef}>
         <h3 className="mb-5 font-medium">Welcome Back!</h3>

@@ -59,7 +59,7 @@ export const Signup = () => {
   return (
     <div>
       <div id="companyName">
-        <h1 className="text-8xl text-[#736246] pt-4 pb-3">No Strings Attached</h1>
+        <h1 className="text-8xl text-[#736246] pt-4 pb-3 herr-von-muellerhoff-regular">No Strings Attached</h1>
       </div>
       <form
         id="feedbackForm"
@@ -70,6 +70,8 @@ export const Signup = () => {
         <h3 className="mb-5 font-medium">New Here?</h3>
         <input type="text" name="name" placeholder="Name" className="border-1 rounded-lg border-gray-700 focus:border-[#e3baa1] h-10 w-70 mb-3" />
         <input type="email" name="email" placeholder="Email" className="border-1 rounded-lg border-gray-700 focus:border-[#e3baa1] h-10 w-70 mb-3" />
+        <input type="text" name="add" placeholder="Hostel/Address" className="border-1 rounded-lg border-gray-700 focus:border-[#e3baa1] h-10 w-70 mb-3" />
+        <input type="text" name="number" placeholder="Mobile Number" className="border-1 rounded-lg border-gray-700 focus:border-[#e3baa1] h-10 w-70 mb-3" />
         <input type="password" name="password" placeholder="Set Password" className="border-1 rounded-lg border-gray-700 focus:border-[#e3baa1] h-10 w-70 mb-3" />
         <button type="submit" className="border-1 rounded-lg border-gray-700 focus:border-red-600 h-10 w-70 mb-3 hover:bg-[#736246] hover:text-white">Signup!</button>
       </form>

@@ -3,7 +3,7 @@ import { getUserId } from "../../utils/auth";
 import { NavigationBar } from "../common/NavigationBar";
 import { Footer } from "../common/Footer";
 import { ProductCard } from "../common/ProductCard";
-import { HeaderWomen } from "../women/HeaderWomen";
+import { HeaderBag } from "./HeaderBag";
 import { Filter } from "../common/Filter";
 import { useNavigate } from "react-router-dom";
 
@@ -89,10 +89,18 @@ export const Bag = () => {
 
         <div id="body" className="flex flex-col ml-26 mr-1">
           <div id="header" className="mt-1">
-            <HeaderWomen />
+            <HeaderBag />
           </div>
 
-          <div id="filter" className="mt-20 sticky top-0 z-[50] bg-white">
+          <div id="filter" className="mt-20 sticky top-0 z-[50] bg-white flex flex-row justify-between">
+            {displayedProducts.length > 0 && (
+            <div className="text-center ml-50">
+              <button
+              onClick={() => navigate("/checkout/summary")}className="px-6 py-2 bg-[#736246] text-white rounded-lg hover:bg-[#5a4d37] transition">
+                Checkout
+              </button>
+            </div>
+          )}
             <Filter
               onSortChange={setSortOrder}
               onFilterChange={setFilters}
@@ -111,17 +119,6 @@ export const Bag = () => {
               ))
             )}
           </div>
-
-          {displayedProducts.length > 0 && (
-            <div className="text-center my-10">
-              <button
-              onClick={() => navigate("/checkout/summary")}
-              className="px-6 py-2 bg-[#736246] text-white rounded-lg hover:bg-[#5a4d37] transition"
-              >
-                Checkout
-              </button>
-            </div>
-          )}
           <div id="footer" className="mt-20">
             <Footer />
           </div>

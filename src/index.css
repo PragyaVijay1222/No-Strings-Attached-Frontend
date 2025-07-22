@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+
+.herr-von-muellerhoff-regular {
+  font-family: "Herr Von Muellerhoff", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
