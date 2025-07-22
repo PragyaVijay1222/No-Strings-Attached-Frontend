@@ -7,28 +7,37 @@ export const ProtectedRoute = ({ children }) => {
   const [showRedirectMessage, setShowRedirectMessage] = useState(false);
   const navigate = useNavigate();
 
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     async function checkAuth() {
-      const response = await fetch("/api/auth/auth-check", {
-        method: "GET",
-        credentials: "include",
-      });
+      try {
+        const response = await fetch(`${BASE_URL}/api/auth/auth-check`, {
+          method: "GET",
+          credentials: "include",
+        });
 
-      if (response.status === 200) {
-        setIsAuth(true);
-        setIsLoading(false);
-      } else {
+        if (response.status === 200) {
+          setIsAuth(true);
+        } else {
+          setShowRedirectMessage(true);
+          setTimeout(() => {
+            navigate("/login");
+          }, 2000);
+        }
+      } catch (error) {
+        console.error("Auth check failed:", error);
         setShowRedirectMessage(true);
-        setIsLoading(false);
-
         setTimeout(() => {
           navigate("/login");
         }, 2000);
+      } finally {
+        setIsLoading(false);
       }
     }
 
     checkAuth();
-  }, [navigate]);
+  }, [navigate, BASE_URL]);
 
   if (isLoading) return <div>Loading...</div>;
 

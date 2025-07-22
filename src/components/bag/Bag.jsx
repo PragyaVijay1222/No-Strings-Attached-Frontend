@@ -13,6 +13,8 @@ export const Bag = () => {
   const [filters, setFilters] = useState({});
   const userId = getUserId();
 
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
   const resetFilters = () => {
     setFilters({});
     setSortOrder("");
@@ -26,13 +28,13 @@ export const Bag = () => {
   useEffect(() => {
     const fetchBagItems = async () => {
       try {
-        const res = await fetch(`/api/user/${userId}`, {
+        const res = await fetch(`${BASE_URL}/api/user/${userId}`, {
           credentials: "include",
         });
         const userData = await res.json();
 
         const productPromises = userData.bag.map((id) =>
-          fetch(`/api/products/${id}`).then((res) => res.json())
+          fetch(`${BASE_URL}/api/products/${id}`).then((res) => res.json())
         );
 
         const productData = await Promise.all(productPromises);
@@ -69,12 +71,12 @@ export const Bag = () => {
   }, [sortOrder, filters, originalProducts]);
 
   useEffect(() => {
-      const handleGlobalSearch = (e) => {
-          const query = e.detail.query?.toLowerCase();
-          setFilters(prev => ({ ...prev, searchQuery: query }));
-      };
-      window.addEventListener("global-search", handleGlobalSearch);
-      return () => window.removeEventListener("global-search", handleGlobalSearch);
+    const handleGlobalSearch = (e) => {
+      const query = e.detail.query?.toLowerCase();
+      setFilters((prev) => ({ ...prev, searchQuery: query }));
+    };
+    window.addEventListener("global-search", handleGlobalSearch);
+    return () => window.removeEventListener("global-search", handleGlobalSearch);
   }, []);
 
   return (
@@ -91,7 +93,10 @@ export const Bag = () => {
 
           <div id="filter" className="mt-20 sticky top-0 z-[50] bg-white">
             <Filter
-              onSortChange={setSortOrder} onFilterChange={setFilters} onReset={resetFilters}/>
+              onSortChange={setSortOrder}
+              onFilterChange={setFilters}
+              onReset={resetFilters}
+            />
           </div>
 
           <div className="flex flex-wrap ml-[11%] gap-y-24 mt-20">

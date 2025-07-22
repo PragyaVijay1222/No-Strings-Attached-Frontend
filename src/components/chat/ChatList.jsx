@@ -6,35 +6,40 @@ export const ChatList = ({ isOpen, onClose }) => {
   const [chats, setChats] = useState([]);
   const userId = getUserId(); 
   const navigate = useNavigate();
-useEffect(() => {
-  if (!isOpen) return;
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
-  const fetchChats = async () => {
-    try {
-      const res = await fetch(`/api/chat/user/${userId}`);
-      const data = await res.json();
+  useEffect(() => {
+    if (!isOpen) return;
 
-      if (Array.isArray(data)) {
-        setChats(data);
-      } else {
-        console.warn("Unexpected data format:", data);
+    const fetchChats = async () => {
+      try {
+        const res = await fetch(`${BASE_URL}/api/chat/user/${userId}`, {
+          credentials: "include"
+        });
+        const data = await res.json();
+
+        if (Array.isArray(data)) {
+          setChats(data);
+        } else {
+          console.warn("Unexpected data format:", data);
+          setChats([]);
+        }
+      } catch (err) {
+        console.error("Failed to fetch chats:", err.message);
         setChats([]);
       }
-    } catch (err) {
-      console.error("Failed to fetch chats:", err.message);
-      setChats([]);
-    }
-  };
+    };
 
-  fetchChats();
-}, [isOpen]);
-
+    fetchChats();
+  }, [isOpen]);
 
   return (
     <div className={`fixed top-0 w-95 h-full bg-black/60 z-100 transition-transform duration-300 shadow-xl ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
       <div className="flex justify-between px-4 py-3 border-b border-[#736246]">
         <h2 className="text-2xl font-semibold text-white">Your Chats</h2>
-        <button onClick={onClose} className="text-xl font-bold text-white"><img src="/NavigationIcons/close (2).svg" alt="Close" /></button>
+        <button onClick={onClose} className="text-xl font-bold text-white">
+          <img src="/NavigationIcons/close (2).svg" alt="Close" />
+        </button>
       </div>
       <div className="p-4 overflow-y-auto h-full">
         {chats.length === 0 ? (
@@ -42,10 +47,15 @@ useEffect(() => {
         ) : (
           chats.map(chat => (
             <div key={chat._id} className="hover:cursor-pointer mb-3 border-none rounded-[4px] bg-[#736246]/40 hover:bg-[#736246]/50 p-3">
-              <button onClick={() =>{ navigate(`/chat/${chat.productId}/${userId}/${chat.sellerId}`);
-                 onClose(); }}className="w-full text-left">
-                <p className="font-medium text-m text-white hover:cursor-pointer">{chat.productName}</p>
-                <p className="text-sm text-gray-300 truncate hover:cursor-pointer">{chat.lastMessage}</p>
+              <button
+                onClick={() => {
+                  navigate(`/chat/${chat.productId}/${userId}/${chat.sellerId}`);
+                  onClose();
+                }}
+                className="w-full text-left"
+              >
+                <p className="font-medium text-m text-white">{chat.productName}</p>
+                <p className="text-sm text-gray-300 truncate">{chat.lastMessage}</p>
               </button>
             </div>
           ))

@@ -19,6 +19,7 @@ import { ProtectedRoute } from './components/common/ProtectedRoute';
 function App() {
   return (
     <Routes>
+      <Route path="*" element={<div>404 - Page Not Found</div>} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />

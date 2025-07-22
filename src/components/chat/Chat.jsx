@@ -11,26 +11,32 @@ export const Chat = ({ productId, userId, sellerId }) => {
   const [input, setInput] = useState("");
 
   const room = `product-${productId}`;
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     socket.emit("joinRoom", { room });
 
     const fetchHistory = async () => {
-    const res = await fetch(`/api/chat/${productId}/${userId}`);
-    const data = await res.json();
-    setMessages(data);
+      try {
+        const res = await fetch(`${BASE_URL}/api/chat/${productId}/${userId}`, {
+          credentials: "include"
+        });
+        const data = await res.json();
+        setMessages(data);
+      } catch (err) {
+        console.error("Failed to load chat history:", err);
+      }
     };
-    fetchHistory();
 
+    fetchHistory();
 
     socket.on("receiveMessage", (message) => {
       setMessages(prev => {
-      const alreadyExists = prev.some(
-      m => m.content === message.content && m.senderId === message.senderId
-    );
-    return alreadyExists ? prev : [...prev, message];
-    });
-
+        const alreadyExists = prev.some(
+          m => m.content === message.content && m.senderId === message.senderId
+        );
+        return alreadyExists ? prev : [...prev, message];
+      });
     });
 
     return () => {
@@ -44,7 +50,7 @@ export const Chat = ({ productId, userId, sellerId }) => {
     socket.emit("sendMessage", {
       room,
       senderId: userId,
-      receiverId: sellerId, 
+      receiverId: sellerId,
       productId,
       content: input
     });
@@ -57,19 +63,18 @@ export const Chat = ({ productId, userId, sellerId }) => {
     <div className="border border-[#bfb6a6] p-4 rounded w-[49%] ml-[51%]">
       <h2 className="text-lg font-medium mb-2">Live Chat</h2>
       <div className="h-64 overflow-y-scroll mb-2 bg-gray-100 p-2 rounded">
-       {messages.map((msg, index) => {
-            const isSender = msg.senderId === userId;
-                const bubbleStyle = isSender? "bg-white text-black": "bg-[#b398a5] text-white";
-                const alignment = isSender ? "text-right" : "text-left";
-                return (
-                <div key={index} className={`mb-1 ${alignment}`}>
-                    <span className={`inline-block px-2 py-1 rounded shadow ${bubbleStyle}`}>
-                        {msg.content}
-                    </span>
-                </div>
-                );
+        {messages.map((msg, index) => {
+          const isSender = msg.senderId === userId;
+          const bubbleStyle = isSender ? "bg-white text-black" : "bg-[#b398a5] text-white";
+          const alignment = isSender ? "text-right" : "text-left";
+          return (
+            <div key={index} className={`mb-1 ${alignment}`}>
+              <span className={`inline-block px-2 py-1 rounded shadow ${bubbleStyle}`}>
+                {msg.content}
+              </span>
+            </div>
+          );
         })}
-
       </div>
       <div className="flex gap-2">
         <input
@@ -78,7 +83,10 @@ export const Chat = ({ productId, userId, sellerId }) => {
           className="flex-1 border border-[#6e5f53] rounded px-2 py-1"
           placeholder="Type your message..."
         />
-        <button onClick={sendMessage} className="bg-[#8f6865] text-white px-3 py-1 rounded hover:bg-[#b398a5] w-[20%]">
+        <button
+          onClick={sendMessage}
+          className="bg-[#8f6865] text-white px-3 py-1 rounded hover:bg-[#b398a5] w-[20%]"
+        >
           Send
         </button>
       </div>

@@ -1,37 +1,40 @@
 import { useRef } from "react";
 
+export const ContentSell = () => {
+  const formRef = useRef();
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
-export const ContentSell = () =>{
+  async function handleFormSubmit(event) {
+    event.preventDefault();
 
-    const formRef = useRef();
+    const formData = new FormData(formRef.current);
+    const userPayload = {};
 
-    async function handleFormSubmit(event){
-
-        event.preventDefault();
-
-        const formData = new FormData(formRef.current);
-        const userPayload = {};
-
-        for(const data of formData.entries()){
-            userPayload[data[0]] = data[1];
-        }
-
-        const response = await fetch("/api/sell/sell",{
-            method: "POST",
-            body: JSON.stringify(userPayload),
-            headers:{
-                "Content-Type": "application/json"
-            },
-            credentials: "include"
-        });
-
-        const result = await response.json();
-        if (response.ok) {
-            alert("Product submitted successfully!");
-        } else {
-            alert(result.message || "Something went wrong");
-        }
+    for (const data of formData.entries()) {
+      userPayload[data[0]] = data[1];
     }
+
+    try {
+      const response = await fetch(`${BASE_URL}/api/sell/sell`, {
+        method: "POST",
+        body: JSON.stringify(userPayload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert("Product submitted successfully!");
+      } else {
+        alert(result.message || "Something went wrong");
+      }
+    } catch (err) {
+      alert("Something went wrong");
+      console.error("Sell form submission failed:", err);
+    }
+  }
 
     return(
         <div id="sellContentMainDiv" className="flex flex-row">

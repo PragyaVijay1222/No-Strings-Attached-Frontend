@@ -5,10 +5,11 @@ import { setUserId } from "../../utils/auth";
 export const Signup = () => {
   const formRef = useRef();
   const navigate = useNavigate();
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     async function checkAuthenticationStatus() {
-      const response = await fetch("/api/auth/auth-check", {
+      const response = await fetch(`${BASE_URL}/api/auth/auth-check`, {
         method: "GET",
         credentials: "include"
       });
@@ -19,7 +20,7 @@ export const Signup = () => {
     }
 
     checkAuthenticationStatus();
-  }, []);
+  }, [navigate, BASE_URL]);
 
   async function handleFormSubmit(event) {
     event.preventDefault();
@@ -31,23 +32,28 @@ export const Signup = () => {
       userPayload[data[0]] = data[1];
     }
 
-    const response = await fetch("/api/auth/signup", {
-      method: "POST",
-      body: JSON.stringify(userPayload),
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include"
-    });
+    try {
+      const response = await fetch(`${BASE_URL}/api/auth/signup`, {
+        method: "POST",
+        body: JSON.stringify(userPayload),
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include"
+      });
 
-    const data = await response.json(); 
+      const data = await response.json(); 
 
-    if (response.status === 201) {
-      setUserId(data.userId);
-      navigate("/");
+      if (response.status === 201) {
+        setUserId(data.userId);
+        navigate("/");
+      } else {
+        alert(data.message || "Signup failed.");
+      }
+    } catch (err) {
+      console.error("Signup error:", err);
+      alert("Something went wrong. Please try again.");
     }
-
-    console.log(response);
   }
 
   return (
@@ -69,7 +75,8 @@ export const Signup = () => {
       </form>
       <div className="text-center mt-4">
         <p>Already have an account?{" "}
-        <a href="/login" className="text-[#736246] hover:underline">Login!</a></p></div>
+        <a href="/login" className="text-[#736246] hover:underline">Login!</a></p>
+      </div>
     </div>
   );
 };
