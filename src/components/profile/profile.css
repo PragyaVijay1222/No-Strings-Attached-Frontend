@@ -1,0 +1,57 @@
+
+.profile-header {
+  text-align: center;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.carousel-section {
+  margin-bottom: 20px;
+}
+
+.carousel-section h2 {
+  text-align: center;
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.carousel-item img {
+  height: 300px;
+  object-fit: contain;
+  border-radius: 8px !important;
+}
+
+.loading, .error {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 50px;
+}
+
+.error {
+  color: #ff0000;
+}
+
+.carousel .carousel-item:hover .legend {
+  background-color: #8f6865 !important; 
+  color: #ffffff; 
+}
+
+.carousel-section h2{
+  font-size: 20px;
+}
+
+.carousel-section .span{
+  font-size: 27px;
+}
+
+/* .carousel-section .span {
+  font-size: 22px;
+  color: #444;
+} */
