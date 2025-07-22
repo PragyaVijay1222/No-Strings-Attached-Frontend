@@ -17,7 +17,7 @@ export const HomePage = () => {
 
       for (let category of categories) {
         try {
-          const res = await fetch(`http://localhost:8080/api/products/${category}`);
+          const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/products/${category}`);
           const data = await res.json();
           merged = [...merged, ...data];
         } catch (error) {

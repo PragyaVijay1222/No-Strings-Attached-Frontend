@@ -13,7 +13,7 @@ export const Contents = ({ filterCategory, sortOrder, filters }) => {
         accessories: "accessories",
       };
 
-      const endpoint = `http://localhost:8080/api/products/${categoryMap[filterCategory] || ""}`;
+      const endpoint = `${import.meta.env.VITE_BACKEND_URL}/api/products/${categoryMap[filterCategory] || ""}`;
       try {
         setLoading(true);
         const res = await fetch(endpoint);

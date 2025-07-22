@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:8080");
+const socket = io(import.meta.env.VITE_SOCKET_URL, {
+  withCredentials: true,
+  transports: ["websocket"],
+});
 
 export const Chat = ({ productId, userId, sellerId }) => {
   const [messages, setMessages] = useState([]);
