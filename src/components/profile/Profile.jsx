@@ -5,7 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { NavigationBar } from '../common/NavigationBar';
 import { HeaderAccessories } from '../accessories/HeaderAccessories';
 import { Footer } from '../common/Footer'
-import './Profile.css';
+import './profile.css';
 
 export const Profile = () => {
   const [profile, setProfile] = useState(null);
