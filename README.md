@@ -2,6 +2,13 @@
 
 **No Strings Attached** is a sustainable thrifting platform enabling users to buy, sell, donate, and interact over secondhand fashion. This is the **frontend repository** of the project, built using **ReactJS**.
 
+Check out the [Live Site](https://no-strings-attached-frontend.vercel.app/)
+
+-Enter with valid email ID to get confirmation mail.
+-To bypass the OQ code for payment, just click on the "I've Paid" button.
+
+View the [Backend](https://github.com/PragyaVijay1222/No-Strings-Attached-Backend)
+
 ## 🌐 Tech Stack
 
 - **React.js** (Vite)
@@ -122,7 +129,7 @@ VITE_SOCKET_URL=http://localhost:8080
 
 ---
 
-## 🖼️ Screenshots (Add below)
+## 🖼️ Screenshots
 
 ### Home Page
 ![Home](screenshots/Home.png)
@@ -156,6 +163,7 @@ VITE_SOCKET_URL=http://localhost:8080
 
 ---
 
+And many more features in [Live Site](https://no-strings-attached-frontend.vercel.app/)
 
 
 © 2025 No Strings Attached — All rights reserved.
