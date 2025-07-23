@@ -4,8 +4,8 @@
 
 Check out the [Live Site](https://no-strings-attached-frontend.vercel.app/)
 
--Enter with valid email ID to get confirmation mail.
--To bypass the OQ code for payment, just click on the "I've Paid" button.
+- Enter with valid email ID to get confirmation mail.
+- To bypass the QR code for payment, just click on the "I've Paid" button.
 
 View the [Backend](https://github.com/PragyaVijay1222/No-Strings-Attached-Backend)
 
