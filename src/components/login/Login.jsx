@@ -1,14 +1,17 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setUserId } from "../../utils/auth"; 
+import { SpinnerOverlay } from "../common/SpinnerOverlay";
+import { CustomSpinner } from "../common/CustomSpinner";
 
 export const Login = () => {
   const formRef = useRef();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   async function handleFormSubmit(event) {
     event.preventDefault();
-
+    setLoading(true);
     const formData = new FormData(formRef.current);
     const userPayload = {};
 
@@ -45,11 +48,16 @@ export const Login = () => {
       console.error("Login error:", error);
       alert("Something went wrong. Please try again.");
     }
+    finally {
+    setLoading(false); 
+  }
   }
 
 
   return (
-    <div>
+    <>
+    {loading && <SpinnerOverlay />}
+    <div className={loading ? "blur-sm pointer-events-none" : ""}>
       <div id="companyName">
         <h1 className="text-8xl text-[#736246] pt-4 pb-3 herr-von-muellerhoff-regular">No Strings Attached</h1>
       </div>
@@ -57,11 +65,12 @@ export const Login = () => {
         <h3 className="mb-5 font-medium">Welcome Back!</h3>
         <input type="email" name="email" placeholder="Email" className="border-1 rounded-lg border-gray-700 focus:border-[#e3baa1] h-10 w-70 mb-3"/>
         <input type="password" name="password" placeholder="Password" className="border-1 rounded-lg border-gray-700 focus:border-[#e3baa1] h-10 w-70 mb-3"/>
-        <button type="submit" className="border-1 rounded-lg border-gray-700 focus:border-red-600 h-10 w-70 mb-3 hover:bg-[#736246] hover:text-white">Login!</button>
+        <button type="submit" className="border-1 rounded-lg border-gray-700 focus:border-red-600 h-10 w-70 mb-3 hover:bg-[#736246] hover:text-white" disabled={loading}>{loading ? "Logging in....": "Login!"}</button>
       </form>
       <div className="text-center mt-4">
         <p>No account?{" "}
         <a href="/signup" className="text-[#736246] hover:underline">Signup!</a></p></div>
     </div>
+    </>
   );
 };

@@ -136,7 +136,7 @@ export const Product = () => {
               <button
                 onClick={handleFavoriteToggle}
                 className={`px-4 py-2 w-50 rounded text-white text-sm ${
-                  isFavorited ? "bg-[#9e646b]" : "bg-gray-300 text-black"
+                  isFavorited ? "bg-gray-500 text-black " : "bg-[#9e646b]"
                 } hover:opacity-90 hover:cursor-pointer`}
               >
                 {isFavorited ? "Unfavorite" : "Add to Favorites"}
