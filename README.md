@@ -127,12 +127,35 @@ VITE_SOCKET_URL=http://localhost:8080
 ### Home Page
 ![Home](screenshots/Home.png)
 
-### Product Detail & Chat
-![Chat](screenshots/Chat.png)
+### Products Listing
+![Checkout](screenshots/ProductsListing.png)
 
-### Checkout & QR Code
-![Checkout](screenshots/checkout.png)
+### Product
+![Chat](screenshots/Product.png)
+
+### Chat
+![Checkout](screenshots/Chat.png)
+
+### Chat List
+![Checkout](screenshots/ChatList.png)
+
+### Women 
+![Checkout](screenshots/Women.png)
+
+### Men
+![Checkout](screenshots/Men.png)
+
+### Accessories
+![Checkout](screenshots/Accessories.png)
+
+### Profile
+![Checkout](screenshots/Profile.png)
+
+### Profile Info
+![Checkout](screenshots/ProfileInfo.png)
 
 ---
+
+
 
 © 2025 No Strings Attached — All rights reserved.
