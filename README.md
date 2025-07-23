@@ -125,10 +125,10 @@ VITE_SOCKET_URL=http://localhost:8080
 ## 🖼️ Screenshots (Add below)
 
 ### Home Page
-![Home](screenshots/home.png)
+![Home](screenshots/Home.png)
 
 ### Product Detail & Chat
-![Chat](screenshots/chat.png)
+![Chat](screenshots/Chat.png)
 
 ### Checkout & QR Code
 ![Checkout](screenshots/checkout.png)
