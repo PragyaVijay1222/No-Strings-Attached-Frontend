@@ -11,19 +11,11 @@ export const ContentSell = () => {
     event.preventDefault();
 
     const formData = new FormData(formRef.current);
-    const userPayload = {};
-
-    for (const data of formData.entries()) {
-      userPayload[data[0]] = data[1];
-    }
 
     try {
       const response = await fetch(`${BASE_URL}/api/sell/sell`, {
         method: "POST",
-        body: JSON.stringify(userPayload),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        body: formData,
         credentials: "include",
       });
 
@@ -92,14 +84,14 @@ export const ContentSell = () => {
     <input type="email" name="email" id="email" placeholder="Your Email ID" className="border rounded-lg border-gray-700 focus:border-[#736246] h-10 w-full focus:ring-2 focus:ring-[#736246] outline-none" />
   </div>
 
-  <div className="flex items-center mb-3">
-    <label htmlFor="image" className="w-[150px] mr-30 text-right font-medium">Image URL:</label>
-    <input type="text" name="image" id="image" placeholder="Image URL" className="border rounded-lg border-gray-700 focus:border-[#736246] h-10 w-full focus:ring-2 focus:ring-[#736246] outline-none" />
-  </div>
-
   <div className="flex items-center mb-7">
     <label htmlFor="upi" className="w-[150px] mr-30 text-right font-medium">UPI ID:</label>
     <input type="text" name="upi" id="upi" placeholder="Your UPI ID" className="border rounded-lg border-gray-700 focus:border-[#736246] h-10 w-full focus:ring-2 focus:ring-[#736246] outline-none" />
+  </div>
+
+  <div className="flex items-center mb-3">
+    <label htmlFor="image" className="w-[150px] mr-30 text-right font-medium">Image: </label>
+    <input type="file" name="image" id="image" accept="image/*" className="border rounded-lg border-gray-700 focus:border-[#736246] h-10 w-full focus:ring-2 focus:ring-[#736246] outline-none pl-2 pt-1" />
   </div>
 
   <button type="submit" className="border rounded-lg border-gray-700 h-10 w-full hover:bg-[#736246] hover:border-[#736246] hover:text-white active:bg-[#4e3d2c] active:text-white active:border-[#4e3d2c]">

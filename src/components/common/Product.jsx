@@ -123,7 +123,7 @@ export const Product = () => {
             <p className="text-md pt-4">Price: ₹{product.cost}</p>
             <p className="text-md pt-4">Material: {product.material}</p>
             <p className="text-md pt-4">Condition: {product.old}</p>
-            <p className="text-md pt-4">Stle Fit: {product.styleFit}</p>
+            <p className="text-md pt-4">Style Fit: {product.styleFit}</p>
             <div className="dec flex flex-row gap-4 mt-20">
               <button
                 onClick={handleCartToggle}

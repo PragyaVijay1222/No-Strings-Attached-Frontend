@@ -56,13 +56,15 @@ export const Footer = () => {
           <h3 className="mb-5 font-medium">Terms & Policies</h3>
           <ul className="list-none">
             <li className="mb-5 hover:text-[#b07653]">Privacy Policies</li>
-            <li className="mb-5 hover:text-[#b07653]">Terms of Use</li>
+            <li className="mb-5 hover:text-[#b07653]">Terms and Conditions</li>
+            <li className="mb-5 hover:text-[#b07653]">Refund and Cancellation</li>
+            <li className="mb-5 hover:text-[#b07653]">Shipping and Delivery</li>
             <li className="mb-5 hover:text-[#b07653]">Code of Conduct</li>
           </ul>
         </div>
 
         <div id="contacts" className="flex flex-col items-center text-center mt-4">
-          <h3 className="mb-5 font-medium">Contact Me</h3>
+          <h3 className="mb-5 font-medium">Contact Us</h3>
           <div className="mb-5"><img src="/NavigationIcons/github.png" /></div>
           <div className="mb-5"><img src="/NavigationIcons/linkedin.png" /></div>
           <div><img src="/NavigationIcons/email.png" /></div>
